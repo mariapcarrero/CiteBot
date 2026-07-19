@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "question": "When does a new hire receive their laptop?",
+    "expected_sources": ["onboarding-faq.md"],
+    "reference_answer": "On the first day of work, during the morning induction session.",
+    "should_refuse": false
+  },
+  {
+    "id": 2,
+    "question": "How many days in advance must time off be requested, and who approves it?",
+    "expected_sources": ["onboarding-faq.md"],
+    "reference_answer": "At least 10 days in advance, through the HR portal, approved by the direct manager.",
+    "should_refuse": false
+  },
+  {
+    "id": 3,
+    "question": "How long is the probation period for new hires?",
+    "expected_sources": ["onboarding-faq.md"],
+    "reference_answer": "3 months for all new hires, with no exceptions based on seniority.",
+    "should_refuse": false
+  },
+  {
+    "id": 4,
+    "question": "What is the minimum password length and how often must passwords be renewed?",
+    "expected_sources": ["security-guide.md"],
+    "reference_answer": "At least 12 characters, combining uppercase, lowercase, numbers and symbols, renewed every 90 days.",
+    "should_refuse": false
+  },
+  {
+    "id": 5,
+    "question": "Within how much time must a phishing attempt be reported, and to whom?",
+    "expected_sources": ["security-guide.md"],
+    "reference_answer": "Within one hour of detection, by emailing security@company.example.",
+    "should_refuse": false
+  },
+  {
+    "id": 16,
+    "question": "What does MDM stand for?",
+    "expected_sources": ["security-guide.md"],
+    "reference_answer": "Mobile device management.",
+    "should_refuse": false
+  },
+  {
+    "id": 6,
+    "question": "Can confidential company information be stored on a personal phone?",
+    "expected_sources": ["security-guide.md"],
+    "reference_answer": "Only if the personal device is enrolled in the mobile device management (MDM) program.",
+    "should_refuse": false
+  },
+  {
+    "id": 7,
+    "question": "How many days in advance must a business trip be approved, and who approves international trips?",
+    "expected_sources": ["travel-policy.md"],
+    "reference_answer": "At least 5 business days in advance by the direct manager; international trips also need approval from the area director.",
+    "should_refuse": false
+  },
+  {
+    "id": 8,
+    "question": "What is the daily meal limit for international trips?",
+    "expected_sources": ["travel-policy.md"],
+    "reference_answer": "60 USD per day for international trips.",
+    "should_refuse": false
+  },
+  {
+    "id": 9,
+    "question": "What flight class is authorized for flights longer than 6 hours?",
+    "expected_sources": ["travel-policy.md"],
+    "reference_answer": "Premium economy class.",
+    "should_refuse": false
+  },
+  {
+    "id": 10,
+    "question": "What chunk size range is recommended for prose-style documents in the RAG design?",
+    "expected_sources": ["rag-design-doc.md"],
+    "reference_answer": "800-1200 characters.",
+    "should_refuse": false
+  },
+  {
+    "id": 11,
+    "question": "Why is hybrid retrieval useful according to the design doc?",
+    "expected_sources": ["rag-design-doc.md"],
+    "reference_answer": "It combines semantic (embedding) search with lexical (BM25) search, which helps with exact terms like product codes, proper names, or item numbers that embeddings do not always capture well.",
+    "should_refuse": false
+  },
+  {
+    "id": 12,
+    "question": "What happens if a scanned PDF is indexed without OCR?",
+    "expected_sources": ["rag-design-doc.md"],
+    "reference_answer": "It ends up silently empty with no visible error, which is a risk worth monitoring.",
+    "should_refuse": false
+  },
+  {
+    "id": 13,
+    "question": "What is the reimbursement timeline once travel receipts are submitted?",
+    "expected_sources": ["travel-policy.md"],
+    "reference_answer": "Within 15 business days after submitting receipts.",
+    "should_refuse": false
+  },
+  {
+    "id": 14,
+    "question": "What is the CEO's name and what is the company's annual revenue?",
+    "expected_sources": [],
+    "reference_answer": null,
+    "should_refuse": true
+  },
+  {
+    "id": 15,
+    "question": "What is the company's policy on remote work stipends for home office equipment?",
+    "expected_sources": [],
+    "reference_answer": null,
+    "should_refuse": true
+  }
+]

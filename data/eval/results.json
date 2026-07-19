@@ -1,0 +1,233 @@
+{
+  "total_questions": 16,
+  "retrieval_hit_rate": 1.0,
+  "answer_correctness_rate": 1.0,
+  "results": [
+    {
+      "id": 1,
+      "question": "When does a new hire receive their laptop?",
+      "answer": "A new hire receives their laptop on the first day of work, during the morning induction session.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 2,
+      "question": "How many days in advance must time off be requested, and who approves it?",
+      "answer": "Time off must be requested through the HR portal at least 10 days in advance, and the direct manager must approve the request.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 3,
+      "question": "How long is the probation period for new hires?",
+      "answer": "The probation period is 3 months for all new hires, with no exceptions based on seniority. \n\n(Source: onboarding-faq.md, section: What is the probation period?)",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 4,
+      "question": "What is the minimum password length and how often must passwords be renewed?",
+      "answer": "The minimum password length is 12 characters, and passwords must be renewed every 90 days. \n\n(Source: security-guide.md, section: Passwords)",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 5,
+      "question": "Within how much time must a phishing attempt be reported, and to whom?",
+      "answer": "Any suspected phishing attempt or security incident must be reported within one hour of detection by emailing security@company.example.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 16,
+      "question": "What does MDM stand for?",
+      "answer": "MDM stands for mobile device management.",
+      "retrieved_sources": [
+        "rag-design-doc.md",
+        "security-guide.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 6,
+      "question": "Can confidential company information be stored on a personal phone?",
+      "answer": "Confidential company information may not be stored on personal devices that are not enrolled in the mobile device management (MDM) program.",
+      "retrieved_sources": [
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 7,
+      "question": "How many days in advance must a business trip be approved, and who approves international trips?",
+      "answer": "Every business trip must be approved by the direct manager at least 5 business days in advance. International trips also require approval from the area director.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 8,
+      "question": "What is the daily meal limit for international trips?",
+      "answer": "The daily meal limit for international trips is 60 USD.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 9,
+      "question": "What flight class is authorized for flights longer than 6 hours?",
+      "answer": "Premium economy class is authorized for flights longer than 6 hours.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 10,
+      "question": "What chunk size range is recommended for prose-style documents in the RAG design?",
+      "answer": "The recommended chunk size range for prose-style documents in the RAG design is 800-1200 characters.",
+      "retrieved_sources": [
+        "rag-design-doc.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 11,
+      "question": "Why is hybrid retrieval useful according to the design doc?",
+      "answer": "Hybrid retrieval is useful because it combines embedding-based (semantic) search with traditional lexical search (BM25), which is especially beneficial when questions include exact terms like product codes, proper names, or item numbers that embeddings do not always capture well.",
+      "retrieved_sources": [
+        "rag-design-doc.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 12,
+      "question": "What happens if a scanned PDF is indexed without OCR?",
+      "answer": "If a scanned PDF is indexed without OCR, it ends up silently empty, which is a risk worth monitoring.",
+      "retrieved_sources": [
+        "rag-design-doc.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 13,
+      "question": "What is the reimbursement timeline once travel receipts are submitted?",
+      "answer": "Travel expenses are reimbursed within 15 business days after submitting receipts.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": true,
+      "correct": true,
+      "should_refuse": false,
+      "refused": false
+    },
+    {
+      "id": 14,
+      "question": "What is the CEO's name and what is the company's annual revenue?",
+      "answer": "I don't know based on the documents.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": null,
+      "correct": true,
+      "should_refuse": true,
+      "refused": true
+    },
+    {
+      "id": 15,
+      "question": "What is the company's policy on remote work stipends for home office equipment?",
+      "answer": "I don't know based on the documents.",
+      "retrieved_sources": [
+        "onboarding-faq.md",
+        "rag-design-doc.md",
+        "security-guide.md",
+        "travel-policy.md"
+      ],
+      "retrieval_hit": null,
+      "correct": true,
+      "should_refuse": true,
+      "refused": true
+    }
+  ]
+}
