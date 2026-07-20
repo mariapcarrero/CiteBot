@@ -22,7 +22,15 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
-from citebot.config import CHAT_MODEL, EVAL_DATASET_PATH, EVAL_RESULTS_PATH, SAMPLE_DOCS_DIR, TOP_K
+from citebot.config import (
+    CHAT_MODEL,
+    EVAL_DATASET_PATH,
+    EVAL_MIN_ANSWER_CORRECTNESS_RATE,
+    EVAL_MIN_RETRIEVAL_HIT_RATE,
+    EVAL_RESULTS_PATH,
+    SAMPLE_DOCS_DIR,
+    TOP_K,
+)
 from citebot.ingest import build_vectorstore, chunk_documents, load_documents
 from citebot.rag_chain import _format_context, get_retriever, prompt, rerank
 
@@ -74,13 +82,18 @@ def run_eval():
             answer = answer_chain.invoke({"context": context, "question": item["question"]})
             refused = _is_refusal(answer)
 
+            forbidden = item.get("forbidden_substrings", [])
+            violated = any(substr.lower() in answer.lower() for substr in forbidden)
+
             if item["should_refuse"]:
                 retrieval_hit = None
-                correct = refused
+                correct = refused and not violated
             else:
                 expected = set(item["expected_sources"])
                 retrieval_hit = expected.issubset(retrieved_sources)
-                correct = (not refused) and _judge(item["question"], item["reference_answer"], answer, llm)
+                correct = (not refused) and (not violated) and _judge(
+                    item["question"], item["reference_answer"], answer, llm
+                )
 
             results.append(
                 {
@@ -92,6 +105,7 @@ def run_eval():
                     "correct": correct,
                     "should_refuse": item["should_refuse"],
                     "refused": refused,
+                    "forbidden_violated": violated,
                 }
             )
 
@@ -127,5 +141,29 @@ def _print_report(results, summary):
     print(f"Results saved to: {EVAL_RESULTS_PATH}")
 
 
+def _check_thresholds(summary):
+    failures = []
+    if (
+        summary["retrieval_hit_rate"] is not None
+        and summary["retrieval_hit_rate"] < EVAL_MIN_RETRIEVAL_HIT_RATE
+    ):
+        failures.append(
+            f"retrieval hit rate {summary['retrieval_hit_rate']:.0%} "
+            f"< required {EVAL_MIN_RETRIEVAL_HIT_RATE:.0%}"
+        )
+    if summary["answer_correctness_rate"] < EVAL_MIN_ANSWER_CORRECTNESS_RATE:
+        failures.append(
+            f"answer correctness {summary['answer_correctness_rate']:.0%} "
+            f"< required {EVAL_MIN_ANSWER_CORRECTNESS_RATE:.0%}"
+        )
+    return failures
+
+
 if __name__ == "__main__":
-    run_eval()
+    import sys
+
+    eval_summary = run_eval()
+    threshold_failures = _check_thresholds(eval_summary)
+    if threshold_failures:
+        print("\nEVAL FAILED: " + "; ".join(threshold_failures))
+        sys.exit(1)

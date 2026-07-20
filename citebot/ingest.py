@@ -6,6 +6,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from citebot.config import CHUNK_OVERLAP, CHUNK_SIZE, EMBEDDING_MODEL
+from citebot.guardrails import annotate_injection_risk
 
 LOADERS_BY_SUFFIX = {
     ".pdf": PyPDFLoader,
@@ -34,7 +35,8 @@ def chunk_documents(documents):
         chunk_size=CHUNK_SIZE,
         chunk_overlap=CHUNK_OVERLAP,
     )
-    return splitter.split_documents(documents)
+    chunks = splitter.split_documents(documents)
+    return annotate_injection_risk(chunks)
 
 
 def build_vectorstore(chunks, persist_dir):

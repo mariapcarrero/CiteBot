@@ -1,0 +1,33 @@
+name: RAG evaluation
+
+on:
+  pull_request:
+    paths:
+      - "citebot/**"
+      - "data/**"
+      - "requirements.txt"
+      - ".github/workflows/eval.yml"
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: Run RAG evaluation
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python -m citebot.evaluate
+
+      - name: Upload eval results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: data/eval/results.json

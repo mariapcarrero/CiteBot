@@ -5,4 +5,5 @@ venv/
 .env
 data/vectorstore/
 data/citebot-upload-*/
+data/feedback/
 .DS_Store
